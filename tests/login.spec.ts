@@ -1,32 +1,26 @@
 import { test, expect } from '@playwright/test';
 import LoginPage from '../pages/LoginPage';
-import HomePage from '../pages/HomePage';
+import InventoryPage from '../pages/InventoryPage';
 import Utils from '../commons/utils';
 
 
 let loginpage: LoginPage;
-let homepage: HomePage;
+let inventorypage: InventoryPage;
 let utils: Utils;
 
 test.beforeEach(async ({ page }) => {
   loginpage = new LoginPage(page);
-  homepage = new HomePage(page);
+  inventorypage = new InventoryPage(page);
   utils = new Utils(page);
   await loginpage.visit();
   await expect(loginpage.titleLoginPage).toBeVisible();
-});
-
-test('FrontEnd Compra de un articulo', async ({ page }) => {
-  
-  await utils.checkTextVisible("Swag Labs")
-  await loginpage.login("standard_user", "secret_sauce");
 });
 
 
 test('Login Correcto', async ({ page }) => {
   
   await loginpage.login("standard_user", "secret_sauce");
-  await expect(homepage.titleHomePage).toBeVisible;
+  await expect(inventorypage.titleIventoryPage).toBeVisible;
 
 });
 
